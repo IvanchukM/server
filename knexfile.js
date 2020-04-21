@@ -10,4 +10,8 @@ module.exports = {
     client: 'pg',
     connection:'postgressql://postgres:postgres@localhost:5432/test-menuDB'
     },
+    production:{
+      client: 'pg',
+      connection: process.env.DATABASE_URL
+    }
   };
