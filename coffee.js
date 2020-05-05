@@ -2,7 +2,7 @@ module.exports = [
     {
         name: "espresso",
         volume_medium: "250",
-        volume_vig: "350",
+        volume_big: "350",
         price_medium: "2.20",
         price_big: "2.70"
     },
