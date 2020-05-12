@@ -22,6 +22,9 @@ module.exports = {
     },
     getOrderByName(name){
         return knex('orders').where('name', name).first();
+    },
+    createOrder(orders){
+        return knex('orders').insert(orders,'*');
     }
 
 }

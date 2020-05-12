@@ -25,6 +25,11 @@ router.get('/orders', (req,res) => {
         res.json(orders);    
     });
 });
+router.post('/orders', (req,res,next) =>{
+       queries.createOrder(req.body).then(orders =>{
+           res.json(orders);
+       });
+});
 
 router.get('/:id', isValidId, (req,res,next) => {
    queries.getOne(req.params.id).then(coffee =>{
