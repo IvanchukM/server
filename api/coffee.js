@@ -20,6 +20,12 @@ router.get('/', (req,res) => {
     });
 });
 
+router.get('/orders', (req,res) => {
+    queries.getAllOrders().then(orders =>{
+        res.json(orders);    
+    });
+});
+
 router.get('/:id', isValidId, (req,res,next) => {
    queries.getOne(req.params.id).then(coffee =>{
        if(coffee){

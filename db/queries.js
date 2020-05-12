@@ -16,6 +16,12 @@ module.exports = {
     },
     delete(id){
         return knex('coffee').where('id',id).del();
+    },
+    getAllOrders(){
+        return knex('orders');
+    },
+    getOrderByName(name){
+        return knex('orders').where('name', name).first();
     }
 
 }
