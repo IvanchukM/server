@@ -1,5 +1,5 @@
 // the connection
-const knex = require('./knex');
+const knex = require('/knex');
 
 module.exports = {
     getAll(){
