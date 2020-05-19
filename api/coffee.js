@@ -42,13 +42,13 @@ router.get('/:id', isValidId, (req,res,next) => {
    });
 });
 
-router.post('/', (req,res,next) =>{
+router.post('/', (req,res,err) =>{
     if(validCoffee(req.body)){
        queries.create(req.body).then(coffee =>{
            res.json(coffee);
        });
     }else{
-        next(new Error('Ivcalid data'));
+        next(new Error(err));
     }
 });
 
