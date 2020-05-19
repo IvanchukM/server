@@ -48,7 +48,7 @@ router.post('/', (req,res,next) =>{
            res.json(coffee);
        });
     }else{
-        next(new Error(err));
+        next(new Error('Ivcalid data'));
     }
 });
 
