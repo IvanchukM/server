@@ -8,12 +8,7 @@ function isValidId(req,res,next){
     if(!isNaN(req.params.id)) return next();
     next(new Error('Invalid ID'));
 }
-function validCoffee(coffee){
-    const hasName = typeof coffee.name == 'string' && coffee.name.trim() != '';
-    const hasVolume = typeof coffee.volume == 'string' && coffee.volume.trim() != '';
-    const hasPrice = typeof coffee.price == 'string' && coffee.price.trim() != '';
-    return hasName && hasVolume && hasPrice
-}
+
 router.get('/', (req,res) => {
     queries.getAll().then(coffee =>{
         res.json(coffee);
@@ -49,14 +44,11 @@ router.post('/', (req,res,err) =>{
 });
 
 router.put('/:id', isValidId, (req,res,next) => {
-    if(validCoffee(req.body)){
+
         //update coffe
         queries.update(req.params.id, req.body).then(coffee =>{
             res.json(coffee);
         });
-    }else{
-        next(new Error('Invalid data'));
-    }
 });
 
 router.delete('/:id', isValidId, (req,res) => {
