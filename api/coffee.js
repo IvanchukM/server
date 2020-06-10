@@ -4,6 +4,7 @@ const router = express.Router();
 
 const queries = require('../db/queries');
 
+
 function isValidId(req,res,next){
     if(!isNaN(req.params.id)) return next();
     next(new Error('Invalid ID'));
@@ -17,12 +18,16 @@ router.get('/', (req,res) => {
 
 router.get('/orders', (req,res) => {
     queries.getAllOrders().then(orders =>{
-        res.json(orders);    
+        //res.json(orders);    
+        res.render('orders',{
+        title: 'Coffee Orders',
+        orders: orders
+        });
     });
 });
 router.post('/orders', (req,res) =>{
        queries.createOrder(req.body).then(orders =>{
-           res.json(orders);
+           res.json(orders)
        });
 });
 
