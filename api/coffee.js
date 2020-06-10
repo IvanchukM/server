@@ -4,7 +4,6 @@ const router = express.Router();
 
 const queries = require('../db/queries');
 
-
 function isValidId(req,res,next){
     if(!isNaN(req.params.id)) return next();
     next(new Error('Invalid ID'));
@@ -25,6 +24,22 @@ router.get('/orders', (req,res) => {
         });
     });
 });
+
+router.get('/orders/:id', (req,res) => {
+    //delete smth
+    queries.deleteOrder(req.params.id).then(() =>{
+        res.redirect('/api/v1/coffee/orders');
+    });
+});
+router.delete('/:id', (req,res) => {
+    //delete smth
+    queries.delete(req.params.id).then(() =>{
+        res.json({
+            deleted: true
+        });
+    });
+});
+
 router.post('/orders', (req,res) =>{
        queries.createOrder(req.body).then(orders =>{
            res.json(orders)
@@ -56,7 +71,7 @@ router.put('/:id', isValidId, (req,res,next) => {
         });
 });
 
-router.delete('/:id', isValidId, (req,res) => {
+router.delete('/:id', (req,res) => {
     //delete smth
     queries.delete(req.params.id).then(() =>{
         res.json({

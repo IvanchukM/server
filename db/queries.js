@@ -17,7 +17,7 @@ module.exports = {
     delete(id){
         return knex('coffee').where('id',id).del();
     },
-    getAllOrders(){
+    getAllOrders(){ 
         return knex('orders');
     },
     getOrderByName(name){
@@ -25,6 +25,8 @@ module.exports = {
     },
     createOrder(orders){
         return knex('orders').insert(orders,'*');
+    },
+    deleteOrder(id){
+        return knex('orders').where('id',id).del();
     }
-
 }
