@@ -3,15 +3,16 @@ const express = require('express');
 const router = express.Router();
 
 const queries = require('../db/queries');
+const { response } = require('express');
 
-function isValidId(req,res,next){
-    if(!isNaN(req.params.id)) return next();
-    next(new Error('Invalid ID'));
-}
 
 router.get('/', (req,res) => {
     queries.getAll().then(coffee =>{
-        res.json(coffee);
+        // res.json(coffee);
+        res.render('menu',{
+            title: 'Menu',
+            coffee: coffee
+        });
     });
 });
 
@@ -46,37 +47,37 @@ router.post('/orders', (req,res) =>{
        });
 });
 
-router.get('/:id', isValidId, (req,res,next) => {
-   queries.getOne(req.params.id).then(coffee =>{
-       if(coffee){
-           res.json(coffee);
-       }else{
-           next();
-       }
-       
-   });
+router.get('/add', (req,res) => {
+        res.render('coffee_add',{
+            title: 'Add Coffee'
+        });
+});
+router.get('/edit/:id', (req,res) => {
+    queries.getOne(req.params.id).then(coffee =>{
+        res.render('coffee_edit',{
+            title: 'Edit Coffee',
+            coffee: coffee
+        });
+    });
 });
 
-router.post('/', (req,res,err) =>{
+router.post('/', (req,res) =>{
        queries.create(req.body).then(coffee =>{
-           res.json(coffee);
+        res.redirect('/api/v1/coffee')
        });
 });
 
-router.put('/:id', isValidId, (req,res,next) => {
-
-        //update coffe
+router.post('/edited/:id', (req,res,next) => {
+        //update coffee
         queries.update(req.params.id, req.body).then(coffee =>{
-            res.json(coffee);
+            res.redirect('/api/v1/coffee')
         });
 });
 
-router.delete('/:id', (req,res) => {
+router.get('/:id', (req,res) => {
     //delete smth
     queries.delete(req.params.id).then(() =>{
-        res.json({
-            deleted: true
-        });
+        res.redirect('/api/v1/coffee')
     });
 });
 

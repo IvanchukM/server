@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+ 
+<div class="container">
+  <h2><%= title %></h2>
+  <form action="/api/v1/coffee" method="post">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="volume_medium">Volume Medium:</label>
+        <input type="text" class="form-control" placeholder="Enter Volume" name="volume_medium" required>
+    </div>
+    <div class="form-group">
+      <label for="volume_big">Volume Big:</label>
+      <input type="text" class="form-control" placeholder="Enter Volume" name="volume_big" required>
+    </div>
+    <div class="form-group">
+        <label for="price_medium">Price Medium:</label>
+        <input type="text" class="form-control" placeholder="Enter Price" name="price_medium" required>
+     </div>
+    <div class="form-group">
+        <label for="price_big">Price Big:</label>
+        <input type="text" class="form-control" placeholder="Enter Price" name="price_big" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+ 
+</body>
+</html>

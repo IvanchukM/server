@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+    <body>
+        <div class="container">
+            <h2><%= title %></h2>
+            <a href="coffee/add/" class="btn btn-sm btn-primary">Add Coffee</a><br/>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Coffee Name</th>
+                        <th>Volume Medium</th>
+                        <th>Volume Big</th>
+                        <th>Price Medium</th>
+                        <th>Price Big</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < coffee.length ; i++) { %>
+                        <tr>
+                            <td><%= coffee[i].name %></td>
+                            <td><%= coffee[i].volume_medium %></td>
+                            <td><%= coffee[i].volume_big %></td>
+                            <td><%= coffee[i].price_medium %></td>
+                            <td><%= coffee[i].price_big %></td>
+                            <td>
+                                <a href="coffee/edit/<%= coffee[i].id %>"class="btn btn-sm btn-primary">Edit</a>
+                                <a href="coffee/<%= coffee[i].id %>"class="btn btn-sm btn-primary">Delete</a>
+                            </td> 
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </body>
