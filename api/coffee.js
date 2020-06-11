@@ -15,6 +15,11 @@ router.get('/', (req,res) => {
         });
     });
 });
+router.get('/menu', (req,res) => {
+    queries.getAll().then(coffee =>{
+        res.json(coffee);
+    });
+});
 
 router.get('/orders', (req,res) => {
     queries.getAllOrders().then(orders =>{
