@@ -6,6 +6,13 @@ const queries = require('../db/queries');
 const { response } = require('express');
 
 
+<<<<<<< HEAD
+=======
+function isValidId(req,res,next){
+    if(!isNaN(req.params.id)) return next();
+    next(new Error('Invalid ID'));
+}
+>>>>>>> 6f29f33136b51c385b21bea6661586ea15161214
 router.get('/', (req,res) => {
     queries.getAll().then(coffee =>{
         // res.json(coffee);
@@ -66,14 +73,23 @@ router.get('/edit/:id', (req,res) => {
     });
 });
 
+<<<<<<< HEAD
 router.post('/', (req,res) =>{
+=======
+router.post('/', (req,res,err) =>{
+>>>>>>> 6f29f33136b51c385b21bea6661586ea15161214
        queries.create(req.body).then(coffee =>{
         res.redirect('/api/v1/coffee')
        });
 });
 
+<<<<<<< HEAD
 router.post('/edited/:id', (req,res,next) => {
         //update coffee
+=======
+router.put('/:id', isValidId, (req,res,next) => {
+        //update coffe
+>>>>>>> 6f29f33136b51c385b21bea6661586ea15161214
         queries.update(req.params.id, req.body).then(coffee =>{
             res.redirect('/api/v1/coffee')
         });
